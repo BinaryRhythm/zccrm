@@ -13,7 +13,7 @@ public class Customer implements Serializable {
 	 * id staffID areaID customerno name legal service dimension website email
 	 * tel address comment createdate createtype birth
 	 */
-
+    private Integer id;
 	private Integer staffID;
 	private Integer areaID;
 	private String customerno;
@@ -27,8 +27,16 @@ public class Customer implements Serializable {
 	private String address;
 	private String comment;
 	private String createdate;
-	private String createtype;
+	private Integer createtype;
 	private String birth;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getCreatedate() {
 		return createdate;
@@ -38,11 +46,11 @@ public class Customer implements Serializable {
 		this.createdate = createdate;
 	}
 
-	public String getCreatetype() {
+	public int getCreatetype() {
 		return createtype;
 	}
 
-	public void setCreatetype(String createtype) {
+	public void setCreatetype(int createtype) {
 		this.createtype = createtype;
 	}
 

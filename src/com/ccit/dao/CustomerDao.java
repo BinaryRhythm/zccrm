@@ -20,8 +20,8 @@ public interface CustomerDao<Customer extends Serializable> {
 	/**
 	 * 获取所有客户
 	 * 
-	 * @param pageSize
-	 * @param pageNo
+	 * @param pageSize 每页显示的记录数目
+	 * @param pageNo  页码，从1开始
 	 * @return 返回所有客户，是指定的分页结果
 	 * @throws SQLException
 	 */
@@ -33,12 +33,12 @@ public interface CustomerDao<Customer extends Serializable> {
 	 * 
 	 * @param pageSize
 	 * @param pageNo
-	 * @param id
+	 * @param staffId 员工的ID
 	 * @return
 	 * @throws SQLException
 	 */
 	public PageDiv<Customer> getCustomerByStaff(Integer pageSize,
-			Integer pageNo, Staff staffId) throws SQLException;
+			Integer pageNo, Integer staffId) throws SQLException;
 
 	/**
 	 * 通过区域获取所有客户

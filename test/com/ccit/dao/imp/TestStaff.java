@@ -42,7 +42,8 @@ public class TestStaff {
 		s.setName("林涵");
 		s.setPwd("123446");
 		s.setTel("13865808808");
-		s.setLimits("测试人员");
+		s.setLimits("测试人员1");
+		s.setLeaderID(1);
 		sd.updateStaff(s);
 	}
 	

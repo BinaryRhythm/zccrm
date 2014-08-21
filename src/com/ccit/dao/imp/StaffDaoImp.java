@@ -37,10 +37,10 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 
 	@Override
 	public void updateStaff(Staff s) {
-		String sql = "update staff set areaID=?,email=?,pwd=?,name=?,tel=?,addr=?,limits=? where id=?";
+		String sql = "update staff set areaID=?,leaderID=?,email=?,pwd=?,name=?,tel=?,addr=?,limits=? where id=?";
 		if (null != s) {
 			try {
-				dao.executeUpdate(sql, s.getAreaID(), s.getEmail(), s.getPwd(),
+				dao.executeUpdate(sql, s.getAreaID(), s.getLeaderID(),s.getEmail(), s.getPwd(),
 						s.getName(), s.getTel(), s.getAddr(), s.getLimits(),
 						s.getId());
 			} catch (SQLException e) {
