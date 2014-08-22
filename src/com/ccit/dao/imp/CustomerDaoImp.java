@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.ccit.beans.Customer;
-import com.ccit.beans.Staff;
 import com.ccit.dao.CustomerDao;
 import com.ccit.dao.core.DaoTemplate;
 import com.ccit.page.PageDiv;

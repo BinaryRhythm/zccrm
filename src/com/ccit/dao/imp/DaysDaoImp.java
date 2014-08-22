@@ -9,9 +9,9 @@ import com.ccit.dao.core.DaoTemplate;
 public class DaysDaoImp extends DaoTemplate<Days> implements DaysDao<Days>{
 
 	@Override
-	public void addDays(Days c) throws SQLException {
+	public void addDays(Days d) throws SQLException {
 		String sql = "insert into days(StaffID,days1,days2) values(?,?,?)";
-		dao.executeUpdate(sql, c.getStaffID(),c.getDays1(),c.getDays2());
+		dao.executeUpdate(sql, d.getStaffID(),d.getDays1(),d.getDays2());
 	}
 
 	@Override
