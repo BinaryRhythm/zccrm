@@ -26,9 +26,10 @@ public class ReportDaoImp extends DaoTemplate<Report> implements
 
 	@Override
 	public void updateReport(Report r) throws SQLException {
-		String sql = "update report set customerID=?,train_id=?,name=?,title=?,comment=?,dates=?,status=?";
+		String sql = "update report set customerID=?,train_id=?,name=?,title=?,comment=?,dates=?,status=? where id=?";
 		dao.executeUpdate(sql, r.getCustomerId(), r.getTrain_id(), r.getName(),
-				r.getTitile(), r.getComment(), r.getDates(), r.getStatus());
+				r.getTitile(), r.getComment(), r.getDates(), r.getStatus(),
+				r.getId());
 	}
 
 	@Override
@@ -49,8 +50,8 @@ public class ReportDaoImp extends DaoTemplate<Report> implements
 			throws SQLException {
 		PageDiv<Report> pd = null;
 		String sql = "select * from report order by id desc limit ?,?";
-		List<Report> list = dao.executeQuery(sql, Report.class, (pageNo - 1),
-				pageSize);
+		List<Report> list = dao.executeQuery(sql, Report.class, (pageNo - 1)
+				* pageSize, pageSize);
 		Integer totalCount = dao
 				.executeQueryForCount("select count(id) from report");
 		pd = new PageDiv<Report>(pageSize, pageNo, totalCount, list);
@@ -58,9 +59,16 @@ public class ReportDaoImp extends DaoTemplate<Report> implements
 	}
 
 	@Override
-	public Report getReportByStatus(Integer status) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public PageDiv<Report> getReportByStatus(Integer pageSize, Integer pageNo,
+			Integer status) throws SQLException {
+		PageDiv<Report> pd = null;
+		String sql = "select * from report where status=? order by id desc limit ?,?";
+		List<Report> list = dao.executeQuery(sql, Report.class, status,
+				(pageNo - 1) * pageSize, pageSize);
+		Integer totalCount = dao
+				.executeQueryForCount("select count(id) from report");
+		pd = new PageDiv<Report>(pageSize, pageNo, totalCount, list);
+		return pd;
 	}
 
 }
