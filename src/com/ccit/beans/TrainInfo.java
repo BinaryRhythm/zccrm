@@ -21,7 +21,7 @@ public class TrainInfo implements Serializable {
 	 */
 
 	private Integer id;
-	private Integer custonerId;
+	private Integer customerId;
 	private String project;
 	private Date begin;
 	private Date end;
@@ -40,7 +40,7 @@ public class TrainInfo implements Serializable {
 	private String trainleader;
 	private String trainleadertel;
 	private String trainleaderbirth;
-	private String trainercount;
+	private Integer trainercount;
 	private String comment;
 
 	public Integer getId() {
@@ -51,12 +51,12 @@ public class TrainInfo implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getCustonerId() {
-		return custonerId;
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustonerId(Integer custonerId) {
-		this.custonerId = custonerId;
+	public void setCustomerId(Integer custonerId) {
+		this.customerId = custonerId;
 	}
 
 	public String getProject() {
@@ -203,11 +203,11 @@ public class TrainInfo implements Serializable {
 		this.trainleaderbirth = trainleaderbirth;
 	}
 
-	public String getTrainercount() {
+	public Integer getTrainercount() {
 		return trainercount;
 	}
 
-	public void setTrainercount(String trainercount) {
+	public void setTrainercount(Integer trainercount) {
 		this.trainercount = trainercount;
 	}
 
