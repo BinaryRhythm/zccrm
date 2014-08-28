@@ -59,7 +59,7 @@ public class TestArea {
 	@Test
 	public void testService(){
 		StaffService ss = (StaffService)ServiceFactory.getService("StaffService");
-		List<Area> list = ss.getAllList();
+		List<Area> list = ss.getAllArea();
 		for(Area a:list){
 			System.out.println(a.getName()+";"+a.getStatus());
 		}
