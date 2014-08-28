@@ -13,7 +13,7 @@ public interface TrainUserDao<TrainUser extends Serializable> {
 
 	public void updateTrainUser(TrainUser tu) throws SQLException;
 
-	public void getTrainUser(Integer id) throws SQLException;
+	public TrainUser getTrainUser(Integer id) throws SQLException;
 
 	/**
 	 * 通过tainInfo id获取user

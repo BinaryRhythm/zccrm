@@ -2,7 +2,6 @@ package com.ccit.dao;
 
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.List;
 
 import com.ccit.page.PageDiv;
 

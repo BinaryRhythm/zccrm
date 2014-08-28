@@ -23,6 +23,7 @@ public class TrainUser implements Serializable{
 	private String sex;
 	private String job;
 	private Integer height;
+	private Integer cardid;
 	private Date birth;
 	private String tel;
 	private String comment;
@@ -114,6 +115,14 @@ public class TrainUser implements Serializable{
 
 	public void setIsleader(Integer isleader) {
 		this.isleader = isleader;
+	}
+
+	public Integer getCardid() {
+		return cardid;
+	}
+
+	public void setCardid(Integer cardid) {
+		this.cardid = cardid;
 	}
 
 }

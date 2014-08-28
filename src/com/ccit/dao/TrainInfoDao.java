@@ -1,12 +1,11 @@
 package com.ccit.dao;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 
 import com.ccit.beans.TrainInfo;
 import com.ccit.page.PageDiv;
 
-public interface TrainInfoDao<TrainInfo extends Serializable> {
+public interface TrainInfoDao {
 
 	public void addTrainInfo(TrainInfo ti) throws SQLException;
 

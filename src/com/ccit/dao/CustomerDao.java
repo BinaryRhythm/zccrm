@@ -3,8 +3,6 @@ package com.ccit.dao;
 import java.io.Serializable;
 import java.sql.SQLException;
 
-import com.ccit.beans.Customer;
-import com.ccit.beans.Staff;
 import com.ccit.page.PageDiv;
 
 public interface CustomerDao<Customer extends Serializable> {

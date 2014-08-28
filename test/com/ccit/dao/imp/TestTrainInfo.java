@@ -10,11 +10,11 @@ import com.ccit.dao.TrainInfoDao;
 import com.ccit.dao.core.DaoFactory;
 import com.ccit.page.PageDiv;
 
-public class testTrainInfo {
+public class TestTrainInfo {
 
 	@Test
 	public void testAddTrainInfo() {
-		TrainInfoDao<TrainInfo> tfd = (TrainInfoDao<TrainInfo>) DaoFactory
+		TrainInfoDao tfd = (TrainInfoDao) DaoFactory
 				.getDao("TrainInfoDao");
 		TrainInfo ti = new TrainInfo();
 		ti.setBegin(new Date());
@@ -49,7 +49,7 @@ public class testTrainInfo {
 
 	@Test
 	public void testDeleteTrainInfo() {
-		TrainInfoDao<TrainInfo> tfd = (TrainInfoDao<TrainInfo>) DaoFactory
+		TrainInfoDao tfd = (TrainInfoDao) DaoFactory
 				.getDao("TrainInfoDao");
 		try {
 			tfd.deleteTrainInfo(2);
@@ -61,7 +61,7 @@ public class testTrainInfo {
 
 	@Test
 	public void testUpdateTrainInfo() {
-		TrainInfoDao<TrainInfo> tfd = (TrainInfoDao<TrainInfo>) DaoFactory
+		TrainInfoDao tfd = (TrainInfoDao) DaoFactory
 				.getDao("TrainInfoDao");
 
 		TrainInfo ti = new TrainInfo();
@@ -98,7 +98,7 @@ public class testTrainInfo {
 
 	@Test
 	public void testGetTrainInfo() {
-		TrainInfoDao<TrainInfo> tfd = (TrainInfoDao<TrainInfo>) DaoFactory
+		TrainInfoDao tfd = (TrainInfoDao) DaoFactory
 				.getDao("TrainInfoDao");
 		try {
 			TrainInfo ti = tfd.getTrainInfo(3);
@@ -111,7 +111,7 @@ public class testTrainInfo {
 
 	@Test
 	public void testGetAllTrainInfo() {
-		TrainInfoDao<TrainInfo> tfd = (TrainInfoDao<TrainInfo>) DaoFactory
+		TrainInfoDao tfd = (TrainInfoDao) DaoFactory
 				.getDao("TrainInfoDao");
 		try {
 			PageDiv<TrainInfo> pd = tfd.getAllTrainInfo(2, 1);
@@ -126,7 +126,7 @@ public class testTrainInfo {
 	
 	@Test
 	public void testGetTrainInfoByCustomer(){
-		TrainInfoDao<TrainInfo> tfd = (TrainInfoDao<TrainInfo>) DaoFactory
+		TrainInfoDao tfd = (TrainInfoDao) DaoFactory
 				.getDao("TrainInfoDao");
 		try {
 			PageDiv<TrainInfo> pd = tfd.getTrainInfoByCustomer(2, 1, 3);
@@ -138,4 +138,5 @@ public class testTrainInfo {
 			e.printStackTrace();
 		}
 	}
+	
 }

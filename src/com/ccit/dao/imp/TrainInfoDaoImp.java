@@ -9,7 +9,7 @@ import com.ccit.dao.core.DaoTemplate;
 import com.ccit.page.PageDiv;
 
 public class TrainInfoDaoImp extends DaoTemplate<TrainInfo> implements
-		TrainInfoDao<TrainInfo> {
+		TrainInfoDao {
 
 	@Override
 	public void addTrainInfo(TrainInfo ti) throws SQLException {

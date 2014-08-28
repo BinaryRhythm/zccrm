@@ -22,6 +22,7 @@ public class Visit implements Serializable {
 	private String record;
 	private String comment;
 	private Date dates;
+	
 	public Integer getId() {
 		return id;
 	}
