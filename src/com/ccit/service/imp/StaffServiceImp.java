@@ -29,7 +29,7 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 	private static final Logger log = Logger.getLogger(StaffService.class);
 
 	@Override
-	public List<Area> getAllArea(){
+	public List<Area> getAllArea() {
 		List<Area> list = new ArrayList<Area>();
 		list = areaDao.getAll();
 		return list;
@@ -38,11 +38,11 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 	@Override
 	public Staff checkLogin(String email, String pwd) {
 		Staff staff = null;
-		try{
-			staff = staffDao.checkLogin(email,pwd);
+		try {
+			staff = staffDao.checkLogin(email, pwd);
 			log.info("用户登录成功");
-		}catch(SQLException e){
-			log.error("用户登录失败",e);
+		} catch (SQLException e) {
+			log.error("用户登录失败", e);
 			e.printStackTrace();
 		}
 		return staff;
@@ -50,57 +50,125 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 
 	@Override
 	public boolean registStaff(Staff s) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			staffDao.addStaff(s);
+			int lastid = staffDao.getLastInsertId();
+			Days days = new Days();
+			days.setStaffID(lastid);
+			days.setDays1(7);
+			days.setDays2(7);
+			daysDao.addDays(days);
+			res = true;
+			log.info("注册新员工成功");
+		} catch (SQLException e) {
+			log.error("注册新员工失败");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public Staff getStaff(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Staff staff = null;
+		try {
+			staff = staffDao.getStaff(id);
+			log.info("根据员工id查询员工");
+		} catch (SQLException e) {
+			log.error("根据员工id查询员工失败", e);
+			e.printStackTrace();
+		}
+		return staff;
 	}
 
 	@Override
 	public boolean modifyStaffInfo(Staff staff) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			staffDao.updateStaff(staff);
+			log.info("修改员工信息成功");
+		} catch (SQLException e) {
+			log.error("修改员工信息失败", e);
+			e.printStackTrace();
+		}
+		return res;
 	}
 
+	// ******************* 提醒服务项
+
 	@Override
-	public Days getDays(Integer staffId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Days getDaysByStaff(Integer staffId) {
+		Days days = null;
+		try {
+			days = daysDao.getDaysByStaff(staffId);
+			log.info("通过staff获取days");
+		} catch (SQLException e) {
+			log.error("通过staff获取days失败", e);
+			e.printStackTrace();
+		}
+		return days;
 	}
 
 	@Override
 	public boolean setAlertDays(Days days) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			daysDao.addDays(days);
+			log.info("设置生日提醒成功");
+		} catch (SQLException e) {
+			log.error("设置生日提醒失败", e);
+			e.printStackTrace();
+		}
+		return res;
 	}
+
+	// *************** 客户操作
 
 	@Override
 	public boolean addCustomer(Customer c) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			customerDao.addCustomer(c);
+			log.info("add customer success.");
+		} catch (SQLException e) {
+			log.error("add customer failed", e);
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
-	public boolean getCustomer(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+	public Customer getCustomer(Integer id) {
+		Customer c = null;
+		try {
+			customerDao.getCustomer(id);
+			log.info("get customer success.");
+		} catch (SQLException e) {
+			log.error("get customer failed", e);
+			e.printStackTrace();
+		}
+		return c;
 	}
 
 	@Override
 	public boolean updateCustomer(Customer c) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			customerDao.updateCustomer(c);
+			log.info("update customer success");
+		} catch (SQLException e) {
+			log.error("update customer failed", e);
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public PageDiv<Customer> getCustomerByStaff(Integer pageSize,
 			Integer pageNo, Integer staffId) {
-		// TODO Auto-generated method stub
-		return null;
+		PageDiv<Customer> pd = null;
+		String sql = "select * from "
+		return pd;
 	}
 
 	@Override
@@ -281,5 +349,5 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

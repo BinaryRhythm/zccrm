@@ -21,30 +21,38 @@ import com.ccit.dao.core.DaoFactory;
 
 public class ServiceBase {
 
+	@SuppressWarnings("unchecked")
 	protected AreaDao<Area> areaDao = (AreaDao<Area>) DaoFactory
 			.getDao("AreaDao");
 
+	@SuppressWarnings("unchecked")
 	protected CustomerDao<Customer> customerDao = (CustomerDao<Customer>) DaoFactory
 			.getDao("CustomerDao");
 
+	@SuppressWarnings("unchecked")
 	protected DaysDao<Days> daysDao = (DaysDao<Days>) DaoFactory
 			.getDao("DaysDao");
 
+	@SuppressWarnings("unchecked")
 	protected KeyPersonDao<KeyPerson> keyPersonDao = (KeyPersonDao<KeyPerson>) DaoFactory
 			.getDao("KeyPersonDao");
 
+	@SuppressWarnings("unchecked")
 	protected ReportDao<Report> reportDao = (ReportDao<Report>) DaoFactory
 			.getDao("ReportDao");
 
+	@SuppressWarnings("unchecked")
 	protected StaffDao<Staff> staffDao = (StaffDao<Staff>) DaoFactory
 			.getDao("StaffDao");
 
 	protected TrainInfoDao trainInfoDao = (TrainInfoDao) DaoFactory
 			.getDao("TrainInfoDao");
 
+	@SuppressWarnings("unchecked")
 	protected TrainUserDao<TrainUser> trainUserDao = (TrainUserDao<TrainUser>) DaoFactory
 			.getDao("TrainUserDao");
 
+	@SuppressWarnings("unchecked")
 	protected VisitDao<Visit> visitDao = (VisitDao<Visit>) DaoFactory
 			.getDao("VisitDao");
 

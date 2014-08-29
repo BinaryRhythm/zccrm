@@ -40,9 +40,9 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 		String sql = "update staff set areaID=?,leaderID=?,email=?,pwd=?,name=?,tel=?,addr=?,limits=? where id=?";
 		if (null != s) {
 			try {
-				dao.executeUpdate(sql, s.getAreaID(), s.getLeaderID(),s.getEmail(), s.getPwd(),
-						s.getName(), s.getTel(), s.getAddr(), s.getLimits(),
-						s.getId());
+				dao.executeUpdate(sql, s.getAreaID(), s.getLeaderID(),
+						s.getEmail(), s.getPwd(), s.getName(), s.getTel(),
+						s.getAddr(), s.getLimits(), s.getId());
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException("更新员工失败");
@@ -127,6 +127,15 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 			throw new RuntimeException("按领导查询员工失败");
 		}
 		return pd;
+	}
+
+	@Override
+	public Integer getLastInsertId() throws SQLException {
+		Integer lastid = 0;
+		String sql = "select * from staff order by id desc limit 1";
+		Staff s = dao.executeQueryForBean(sql, Staff.class);
+		lastid = s.getId();
+		return lastid;
 	}
 
 }

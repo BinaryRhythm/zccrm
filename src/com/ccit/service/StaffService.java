@@ -63,7 +63,7 @@ public interface StaffService {
 	 * @param staffId
 	 * @return
 	 */
-	public Days getDays(Integer staffId);
+	public Days getDaysByStaff(Integer staffId);
 
 	/**
 	 * 设置提醒天数
@@ -87,7 +87,7 @@ public interface StaffService {
 	 * @param id
 	 * @return
 	 */
-	public boolean getCustomer(Integer id);
+	public Customer getCustomer(Integer id);
 
 	/**
 	 * 修改客户资料
