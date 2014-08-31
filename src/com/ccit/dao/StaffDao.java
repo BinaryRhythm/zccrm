@@ -61,5 +61,10 @@ public interface StaffDao<Staff extends Serializable> {
 	public void addUnderStaff(Integer leaderId, Integer staffId)
 			throws SQLException;
 	
+	/**
+	 * 获取最后一条插入记录的id
+	 * @return
+	 * @throws SQLException
+	 */
 	public Integer getLastInsertId()throws SQLException;
 }

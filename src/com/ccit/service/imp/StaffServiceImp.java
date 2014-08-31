@@ -15,6 +15,7 @@ import com.ccit.beans.Staff;
 import com.ccit.beans.TrainInfo;
 import com.ccit.beans.TrainUser;
 import com.ccit.beans.Visit;
+import com.ccit.dao.KeyPersonDao;
 import com.ccit.page.PageDiv;
 import com.ccit.service.StaffService;
 import com.ccit.service.core.ServiceBase;
@@ -113,7 +114,7 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 	public boolean setAlertDays(Days days) {
 		boolean res = false;
 		try {
-			daysDao.addDays(days);
+			daysDao.updateDays(days);
 			log.info("设置生日提醒成功");
 		} catch (SQLException e) {
 			log.error("设置生日提醒失败", e);
@@ -167,69 +168,146 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 	public PageDiv<Customer> getCustomerByStaff(Integer pageSize,
 			Integer pageNo, Integer staffId) {
 		PageDiv<Customer> pd = null;
-		String sql = "select * from "
+		try {
+			pd = customerDao.getCustomerByStaff(pageSize, pageNo, staffId);
+			log.info("get customer by staff success");
+		} catch (SQLException e) {
+			log.error("get customer by staff failed", e);
+			e.printStackTrace();
+		}
 		return pd;
 	}
 
 	@Override
 	public PageDiv<Customer> getCustomerBySubStaff(Integer pageSize,
 			Integer pageNo, Integer leaderId) {
-		// TODO Auto-generated method stub
-		return null;
+		PageDiv<Customer> pd = null;
+		try {
+			customerDao.getCustomerByUnderStaff(pageSize, pageNo, leaderId);
+			log.info("get customr by substaff success");
+		} catch (SQLException e) {
+			log.error("get customer by substaff failed", e);
+			e.printStackTrace();
+		}
+		return pd;
 	}
 
 	@Override
 	public boolean addKeyPerson(KeyPerson keyPerson) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			keyPersonDao.addKeyPerson(keyPerson);
+			res = true;
+			log.info("add keyperson success");
+		} catch (SQLException e) {
+			log.error("add keyperson failed");
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean deleteKeyPerson(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			keyPersonDao.deleteKeyPerson(id);
+			res = true;
+			log.info("delete a keyprson");
+		} catch (SQLException e) {
+			log.error("delete keyperson failed", e);
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean updateKeyPerson(KeyPerson kp) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			keyPersonDao.updateKeyPerson(kp);
+			res = true;
+			log.info("update keyperson success");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public KeyPerson getKeyPerson(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		KeyPerson kp = null;
+		try {
+			kp = keyPersonDao.getKeyPerson(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return kp;
 	}
 
+	// 可以通过PageDiv进行分页
 	@Override
 	public List<KeyPerson> getKeyPersonByCustomer(Integer customerId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<KeyPerson> kp = null;
+		try {
+			kp = keyPersonDao.getKeypersonByCustomer(customerId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return kp;
 	}
 
 	@Override
 	public boolean addVisit(Visit v) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			visitDao.addVisit(v);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean deleteVisit(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			visitDao.deleteVisit(id);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean updateVisit(Visit v) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			visitDao.updateVisit(v);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public Visit getVisit(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Visit v = null;
+		try {
+			v = visitDao.getVisit(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return v;
 	}
 
 	@Override
@@ -241,113 +319,227 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 	@Override
 	public PageDiv<Visit> getVisitByCustomer(Integer pageSize, Integer pageNo,
 			Integer customerId) {
-		// TODO Auto-generated method stub
-		return null;
+		PageDiv<Visit> pd = null;
+		try {
+			pd = visitDao.getVisitByCustomer(pageSize, pageNo, customerId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pd;
+
 	}
 
 	@Override
-	public boolean addTrainInfo(TrainInfo trainInfo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addTrainInfo(TrainInfo ti) {
+		boolean res = false;
+		try {
+			trainInfoDao.addTrainInfo(ti);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean deleteTrainInfo(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			trainInfoDao.deleteTrainInfo(id);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean updateTrainInfo(TrainInfo trainInfo) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			trainInfoDao.updateTrainInfo(trainInfo);
+			res = false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public TrainInfo getTrainInto(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		TrainInfo ti = null;
+		try {
+			ti = trainInfoDao.getTrainInfo(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ti;
 	}
 
 	@Override
 	public List<TrainInfo> getTrainInfoByCustomer(Integer customerId) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public PageDiv<TrainInfo> getTrainInfoByCustomer(Integer pageSize,
 			Integer pageNo, Integer customerId) {
-		// TODO Auto-generated method stub
-		return null;
+		PageDiv<TrainInfo> pd = null;
+		try {
+			pd = trainInfoDao.getTrainInfoByCustomer(pageSize, pageNo,
+					customerId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pd;
 	}
 
 	@Override
 	public boolean addTrainUser(TrainUser tu) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			trainUserDao.addTrainUser(tu);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean deleteTrainUser(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			trainUserDao.deleteTrainUser(id);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean updateTrainUser(TrainUser tu) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			trainUserDao.updateTrainUser(tu);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public TrainUser getTrainUser(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		TrainUser tu = null;
+		try {
+			tu = trainUserDao.getTrainUser(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tu;
 	}
 
 	@Override
 	public PageDiv<TrainUser> getTrainUserByTrainInfo(Integer pageSize,
 			Integer pageNo, Integer trainInfoId) {
-		// TODO Auto-generated method stub
-		return null;
+		PageDiv<TrainUser> pd = null;
+		try {
+			pd = trainUserDao.getTrainUserByTrainInfo(pageSize, pageNo,
+					trainInfoId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pd;
 	}
 
 	@Override
 	public boolean addReport(Report r) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			reportDao.addReport(r);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean deleteReport(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			reportDao.deleteReport(id);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public boolean updateReport(Report r) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		try {
+			reportDao.updateReport(r);
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 	@Override
 	public Report getReport(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Report r = null;
+		try {
+			r = reportDao.getReport(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return r;
 	}
 
 	@Override
 	public PageDiv<Report> getAllReport(Integer pageSize, Integer pageNo) {
-		// TODO Auto-generated method stub
-		return null;
+		PageDiv<Report> pd = null;
+		try {
+			pd = reportDao.getAllReport(pageSize, pageNo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pd;
 	}
 
 	@Override
 	public PageDiv<Report> getReportByStatus(Integer pageSize, Integer pageNo,
 			Integer statusId) {
-		// TODO Auto-generated method stub
-		return null;
+		PageDiv<Report> pd = null;
+		try {
+			pd = reportDao.getReportByStatus(pageSize, pageNo, statusId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pd;
 	}
 
 }

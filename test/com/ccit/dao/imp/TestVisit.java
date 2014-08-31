@@ -6,7 +6,6 @@ import java.util.Date;
 import org.junit.Test;
 
 import com.ccit.beans.Visit;
-import com.ccit.dao.Dao;
 import com.ccit.dao.VisitDao;
 import com.ccit.dao.core.DaoFactory;
 import com.ccit.page.PageDiv;
@@ -15,7 +14,7 @@ public class TestVisit {
 
 	@Test
 	public void testAdd() {
-		Dao<Visit> vd = (Dao<Visit>) DaoFactory.getDao("VisitDao");
+		VisitDao<Visit> vd = (VisitDao<Visit>) DaoFactory.getDao("VisitDao");
 		Visit v = new Visit();
 		v.setComment("备注");
 		v.setCustomerId(3);
@@ -24,7 +23,7 @@ public class TestVisit {
 		v.setJqr("接洽人 何勇");
 		v.setRecord("记录");
 		try {
-			vd.add(v);
+			vd.addVisit(v);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,9 +32,9 @@ public class TestVisit {
 
 	@Test
 	public void testDelete() {
-		Dao<Visit> vd = (Dao<Visit>) DaoFactory.getDao("VisitDao");
+		VisitDao<Visit> vd = (VisitDao<Visit>) DaoFactory.getDao("VisitDao");
 		try {
-			vd.delete(2);
+			vd.deleteVisit(2);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,7 +43,7 @@ public class TestVisit {
 
 	@Test
 	public void testUpdate() {
-		Dao<Visit> vd = (Dao<Visit>) DaoFactory.getDao("VisitDao");
+		VisitDao<Visit> vd = (VisitDao<Visit>) DaoFactory.getDao("VisitDao");
 		Visit v = new Visit();
 		v.setComment("备注");
 		v.setCustomerId(3);
@@ -54,7 +53,7 @@ public class TestVisit {
 		v.setRecord("记录");
 		v.setId(3);
 		try {
-			vd.update(v);
+			vd.updateVisit(v);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,9 +62,9 @@ public class TestVisit {
 
 	@Test
 	public void testGet() {
-		Dao<Visit> dao = (Dao<Visit>) DaoFactory.getDao("VisitDao");
+		VisitDao<Visit> dao = (VisitDao<Visit>) DaoFactory.getDao("VisitDao");
 		try {
-			Visit v = dao.get(3);
+			Visit v = dao.getVisit(3);
 			System.out.println(v.getJdr());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

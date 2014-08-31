@@ -95,4 +95,9 @@ public class BaseDaoImp<T extends Serializable> implements BaseDao<T> {
 		return qr.query(conn, sql, rsh, params);
 	}
 
+	@Override
+	public Connection getConnection() throws SQLException {
+		return conn;
+	}
+
 }

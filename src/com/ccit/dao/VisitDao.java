@@ -5,15 +5,15 @@ import java.sql.SQLException;
 
 import com.ccit.page.PageDiv;
 
-public interface VisitDao<Visit extends Serializable> {
+public interface VisitDao<Visit extends Serializable>{
 
-	// public void addVisit(Visit v) throws SQLException;
-	//
-	// public void deleteVisit(Integer id) throws SQLException;
-	//
-	// public void updateVisit(Visit v) throws SQLException;
-	//
-	// public Visit getVisit(Integer id) throws SQLException;
+	 public void addVisit(Visit v) throws SQLException;
+	
+	 public void deleteVisit(Integer id) throws SQLException;
+	
+	 public void updateVisit(Visit v) throws SQLException;
+	
+	 public Visit getVisit(Integer id) throws SQLException;
 
 	/**
 	 * 更具customer id 获取visit

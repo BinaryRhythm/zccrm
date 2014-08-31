@@ -1,6 +1,7 @@
 ﻿package com.ccit.dao.core;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,6 +14,13 @@ import org.apache.commons.dbutils.ResultSetHandler;
  * @param <T> 对应表的实体类POJO
  */
 public interface BaseDao<T extends Serializable>{
+	
+	/**
+	 * 获取当前数据库连接
+	 * @return
+	 * @throws SQLException
+	 */
+	public Connection getConnection() throws SQLException;
 	
 	/**
 	 * 批量执行sql语句，将一条sql重复多次

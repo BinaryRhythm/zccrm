@@ -1,5 +1,6 @@
 package com.ccit.dao.imp;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -131,11 +132,17 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 
 	@Override
 	public Integer getLastInsertId() throws SQLException {
-		Integer lastid = 0;
-		String sql = "select * from staff order by id desc limit 1";
-		Staff s = dao.executeQueryForBean(sql, Staff.class);
-		lastid = s.getId();
-		return lastid;
+		// Integer lastid = 0;
+		// String sql = "select * from staff order by id desc limit 1";
+		// Staff s = dao.executeQueryForBean(sql, Staff.class);
+		// lastid = s.getId();
+		// return lastid;
+		Integer id = 0;
+		ResultSet rs = dao.getConnection().createStatement()
+				.executeQuery("select last_insert_id()");
+		if (rs.next())
+			id = rs.getInt(1);
+		return id;
 	}
 
 }
