@@ -1,6 +1,7 @@
 package com.ccit.servlet.staff;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class ServletBase extends HttpServlet {
 
 	public void proc(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		super.doPost(req, resp);
+		// super.doPost(req, resp);
 	}
 
 	public String getString(HttpServletRequest req, String param) {
@@ -76,4 +77,20 @@ public class ServletBase extends HttpServlet {
 		}
 		return res;
 	}
+
+	public void header(HttpServletRequest req, HttpServletResponse resp,
+			String title) throws IOException {
+		resp.setContentType("text/html;charaset=utf-8");
+		PrintWriter out = resp.getWriter();
+		out.println("<html><head><title>" + title + "</title></head><body>");
+		out.close();
+	}
+
+	public void footer(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		PrintWriter out = resp.getWriter();
+		out.println("</body></html>");
+		out.close();
+	}
+
 }

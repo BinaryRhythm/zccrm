@@ -29,6 +29,7 @@ public class CheckLogin extends ServletBase {
 		StaffService ss = (StaffService) sc.getAttribute("ss");
 		Staff staff;
 		try {
+			
 			staff = ss.checkLogin(email, MD5.md5(pwd));
 			if (null != staff && staff.getPwd().equals(MD5.md5(pwd))) {
 				req.getSession().setAttribute("staff", staff);
