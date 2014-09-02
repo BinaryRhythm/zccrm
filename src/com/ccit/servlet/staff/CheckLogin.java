@@ -23,23 +23,21 @@ public class CheckLogin extends ServletBase {
 			throws ServletException, IOException {
 
 		ServletContext sc = this.getServletContext();
-		String email = this.getString(req, "email");
+		String email = this.getString(req,"email");
 		String pwd = this.getString(req, "pwd");
 
 		StaffService ss = (StaffService) sc.getAttribute("ss");
 		Staff staff;
+		
 		try {
-			
 			staff = ss.checkLogin(email, MD5.md5(pwd));
 			if (null != staff && staff.getPwd().equals(MD5.md5(pwd))) {
 				req.getSession().setAttribute("staff", staff);
-				resp.sendRedirect("main.html");
+				resp.sendRedirect("main.jsp");
 			} else {
 				resp.sendRedirect("login.html");
-
 			}
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

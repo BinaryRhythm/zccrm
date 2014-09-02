@@ -5,6 +5,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import com.ccit.service.ManagerService;
 import com.ccit.service.StaffService;
 import com.ccit.service.core.ServiceFactory;
 
@@ -20,12 +21,14 @@ import com.ccit.service.core.ServiceFactory;
 public class InitService implements ServletContextListener {
 
 	StaffService ss = null;
-
+    ManagerService ms = null;
+	
 	/**
 	 * tomcat一旦启动就会执行下面这个函数，赋值ss Default constructor.
 	 */
 	public InitService() {
 		ss = (StaffService) ServiceFactory.getService("StaffService");
+		ms = (ManagerService) ServiceFactory.getService("ManagerService");
 	}
 
 	/**
@@ -36,6 +39,7 @@ public class InitService implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		ServletContext application = arg0.getServletContext();
 		application.setAttribute("ss", ss);
+		application.setAttribute("ms", ms);
 	}
 
 	/**
@@ -44,6 +48,7 @@ public class InitService implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent arg0) {
 		ServletContext application = arg0.getServletContext();
 		application.removeAttribute("ss");
+		application.removeAttribute("ms");
 	}
 
 }

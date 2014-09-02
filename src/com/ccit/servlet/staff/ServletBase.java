@@ -30,7 +30,6 @@ public class ServletBase extends HttpServlet {
 
 	public void proc(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// super.doPost(req, resp);
 	}
 
 	public String getString(HttpServletRequest req, String param) {
@@ -51,8 +50,6 @@ public class ServletBase extends HttpServlet {
 			if (str.matches("\\d+")) {
 				res = Integer.parseInt(str);
 			}
-		} else {
-
 		}
 		return res;
 	}
@@ -69,7 +66,6 @@ public class ServletBase extends HttpServlet {
 			try {
 				res = new String(orgstr.getBytes("iso-8859-1"), "UTF-8");
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -78,16 +74,15 @@ public class ServletBase extends HttpServlet {
 		return res;
 	}
 
-	public void header(HttpServletRequest req, HttpServletResponse resp,
-			String title) throws IOException {
-		resp.setContentType("text/html;charaset=utf-8");
+	public void header(HttpServletResponse resp, String title)
+			throws IOException {
+		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
 		out.println("<html><head><title>" + title + "</title></head><body>");
-		out.close();
+//		out.close();
 	}
 
-	public void footer(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
+	public void footer(HttpServletResponse resp) throws IOException {
 		PrintWriter out = resp.getWriter();
 		out.println("</body></html>");
 		out.close();

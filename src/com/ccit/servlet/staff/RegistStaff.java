@@ -37,15 +37,6 @@ public class RegistStaff extends ServletBase {
 		String addr = this.getString(req, "addr");
 		String comment = this.getString(req, "comment");
 
-		// System.out.println(email);
-		// System.out.println(pwd1);
-		// System.out.println(pwd2);
-		// System.out.println(name);
-		// System.out.println(areaId);
-		// System.out.println(tel);
-		// System.out.println(addr);
-		// System.out.println(comment);
-
 		Staff s = new Staff();
 		s.setAreaID(areaId);
 		s.setAddr(addr);
@@ -57,20 +48,21 @@ public class RegistStaff extends ServletBase {
 		try {
 			s.setPwd(MD5.md5(pwd1));
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		if (ss.registStaff(s)) {
-			// this.header(req, resp, "注册成功！");
-			// this.footer(req, resp);
+		this.header(resp, "温馨提示");
+		PrintWriter out = resp.getWriter();
 
-			PrintWriter out = resp.getWriter();
-			out.println("<script language='javascript'>alert('');<script>");
-
+		if (email != "" && pwd1 != "" && ss.registStaff(s)) {
+			out.println("<p align='center'><h3>注册成功!</h3></p>");
+			out.println("<a href='login.html'>返回登录</a>");
 		} else {
-
+			out.println("<script language='javascript'>alert('注册失败');history.back(-1);</script>");
 		}
+
+		this.footer(resp);
+		out.close();
 
 	}
 

@@ -131,7 +131,7 @@ img {
 
 				<tr>
 					<td height="26"><span class="style11"> <span
-							class="style3">联系地 址：</span>
+							class="style3">联系地址：</span>
 					</span></td>
 					<td height="26" colspan="3"><input type="text" name="addr">
 					</td>
@@ -147,7 +147,7 @@ img {
 					<td width="115"><input type="image" src="image/reg_button.gif"
 						value="确认注册" /></td>
 
-					<td width="80"><a href="regist.jsp"><img
+					<td width="80"><a href="forRegistStaff"><img
 							src="image/login_again.gif" width="63" height="26"> </a></td>
 
 					<td width="92">&nbsp;</td>
