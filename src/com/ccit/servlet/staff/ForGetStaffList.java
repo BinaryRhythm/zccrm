@@ -47,7 +47,7 @@ public class ForGetStaffList extends ServletBase {
 		req.setAttribute("staffPd", staffPd);
 		req.setAttribute("areaList", areaList);
 		
-		req.getRequestDispatcher("../stafflist.jsp").forward(req, resp);
+		req.getRequestDispatcher("stafflist.jsp").forward(req, resp);
 
 	}
 }

@@ -1,12 +1,17 @@
 package com.ccit.beans;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Date;
+
+import com.ccit.dao.AreaDao;
+import com.ccit.dao.StaffDao;
+import com.ccit.dao.core.DaoFactory;
 
 public class Staff implements Serializable{
 
 	/**
-	 * 
+	 * 多添加了领导名字和地域名称
 	 */
 	private static final long serialVersionUID = 5412742060906540952L;
 
@@ -105,14 +110,26 @@ public class Staff implements Serializable{
 	public void setState(Integer state) {
 		this.state = state;
 	}
-	public String getLeaderName() {
-		return leaderName;
+	public String getLeaderName(Integer id) {
+		// 通过id获取leaderName
+		String name = null;
+	    StaffDao<Staff> sd = (StaffDao<Staff>) DaoFactory.getDao("StaffDao");
+	    try {
+			name = sd.getStaff(id).getName();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return name;
 	}
 	public void setLeaderName(String leaderName) {
 		this.leaderName = leaderName;
 	}
-	public String getAreaName() {
-		return areaName;
+	public String getAreaName(Integer id){
+		String name = null;
+	    AreaDao<Area> ad = (AreaDao<Area>) DaoFactory.getDao("AreaDao");
+	    name = ad.getArea(id).getName();
+		return name;
 	}
 	public void setAreaName(String areaName) {
 		this.areaName = areaName;

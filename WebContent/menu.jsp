@@ -65,8 +65,8 @@ $(function(){
 <div id="menulist">
   <dl>
       <dt style="margin-top:0;">首选服务</dt>
-      <dd><a href="#">注销登录</a></dd>
-      <dd><a href="#">修改管理员资料</a></dd>
+      <dd><a href="logout" target="_parent">注销登录</a></dd>
+      <dd><a href="modify_manager.jsp" target="main">修改管理员资料</a></dd>
       <dd><a href="admin/staffList" target="main"><font color="#FF0000">查看员工账号</font></a></dd>
       
       <dt>区域管理</dt>

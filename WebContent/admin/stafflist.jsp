@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@page import="java.util.List,com.ccit.beans.Area,com.ccit.beans.Staff,com.ccit.page.PageDiv"%>
+<%@page
+	import="java.util.List,com.ccit.beans.Area,com.ccit.beans.Staff,com.ccit.page.PageDiv"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>员工列表</title>
-<link href="css/all.css" rel="stylesheet" type="text/css" />
+<link href="../css/all.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 #container_staff {
 	width: 800px;
@@ -129,7 +130,7 @@ a.l4:hover {
 				PageDiv<Staff> staffPd = (PageDiv<Staff>) request
 						.getAttribute("staffPd");
 				List<Staff> list = staffPd.getList();
-				for(Staff s : list) {
+				for (Staff s : list) {
 			%>
 			<tr>
 				<td height="24" width="103" align="center" valign="middle"
@@ -148,7 +149,31 @@ a.l4:hover {
 			</tr>
 			<%
 				}
+				int prePage = (staffPd.getPageNo()-1)<1?1:(staffPd.getPageNo()-1);
+			    int nextPage = (staffPd.getPageNo()+1)>staffPd.getTotalPage()?staffPd.getPageNo():(staffPd.getPageNo()+1);
 			%>
+			<tr>
+				<td height="24" width="103" align="center" valign="middle"
+					colspan="6" bgcolor="#CCCCCC">当前页次<font color="red"><%=staffPd.getPageNo()%>/<%=staffPd.getTotalPage()%></font>，
+					共<font color="red"><%=staffPd.getTotalCount()%></font>条记录
+					 <a href="staffList?pageNo=1" class="l2">[首页]</a> 
+					<a href="staffList?pageNo=<%=prePage %>" class="l2">[上一页]</a> 
+					<a href="staffList?pageNo=<%=nextPage %>" class="l2">[下一页]</a>
+					<a href="staffList?pageNo=<%=staffPd.getTotalPage() %>" class="l2">[尾页]</a>
+			 <form action="" style="display:inline;">
+			   <select name="pageNo">
+			   <%
+			      int tot = staffPd.getTotalPage();
+			      for(int i = 1;i<tot;i++){
+			   %>	 
+			   <option value="<%=i %>"><%=i %></option>
+			   <%
+			      }
+			   %>  
+			   </select>
+			 </form>
+			</td>
+		 </tr>
 
 		</table>
 
