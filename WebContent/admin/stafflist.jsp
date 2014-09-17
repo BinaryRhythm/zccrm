@@ -138,14 +138,31 @@ a.l4:hover {
 				<td height="24" width="74" align="center" valign="middle"
 					bgcolor="#CCCCCC"><%=s.getName()%></td>
 				<td height="24" width="80" align="center" valign="middle"
-					bgcolor="#CCCCCC"><a href="#" class="l2">查看</a></td>
+					bgcolor="#CCCCCC"><a href="#" class="l3">查看</a></td>
 				<td width="66" height="24" align="center" valign="middle"
 					bgcolor="#CCCCCC" class="l2"><a href="#" class="l2">查看</a></td>
 				<td width="327" height="24" align="center" valign="middle"
-					bgcolor="#CCCCCC"><span class="l2"><a href="#"
-						class="l2">查看、修改员工资料</a></span>&nbsp; <a href="#" class="l3">删除员工</a></td>
+					bgcolor="#CCCCCC"><span class="l3"><a href="#"
+						class="l3">查看、修改员工资料</a></span>&nbsp;
+							
+				 <a href="delStaff?id=<%=s.getId() %>&pageNo=<%=staffPd.getPageNo() %>" class="l3">删除员工</a></td>	
+				
 				<td height="24" width="232" align="center" valign="middle"
-					bgcolor="#CCCCCC"><a href="#" class="l4">该账号已开通，点击封闭</a></td>
+					bgcolor="#CCCCCC"><a href="#" class="l4">
+					<% if(s.getState() == 1){ %>
+					该账号已开通，点击
+					<a href="lockAndUnlock?types=lock&id=<%=s.getId() %>&pageNo=<%=staffPd.getPageNo() %>" class="13">
+					关闭
+					</a>				
+					<% }else{ %>
+					该账号未开通，点击
+					<a href="lockAndUnlock?types=unlock&id=<%=s.getId() %>&pageNo=<%=staffPd.getPageNo() %>" class="13">
+						<font color="red">开通</font>
+					</a>
+					<%} %>
+					</a>
+				</td>
+					
 			</tr>
 			<%
 				}

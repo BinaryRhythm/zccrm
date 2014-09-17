@@ -23,7 +23,7 @@
   <frame src="welcome.html" name="main">
 </frameset><noframes></noframes>
 <noframes>
-
+<a>Copyright@档案室，2013-2014</a>
 <body>
 </body>
 </html>

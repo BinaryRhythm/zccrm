@@ -38,12 +38,12 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 
 	@Override
 	public void updateStaff(Staff s) {
-		String sql = "update staff set areaID=?,leaderID=?,email=?,pwd=?,name=?,tel=?,addr=?,limits=? where id=?";
+		String sql = "update staff set areaID=?,leaderID=?,email=?,pwd=?,name=?,tel=?,addr=?,limits=?,state=? where id=?";
 		if (null != s) {
 			try {
 				dao.executeUpdate(sql, s.getAreaID(), s.getLeaderID(),
 						s.getEmail(), s.getPwd(), s.getName(), s.getTel(),
-						s.getAddr(), s.getLimits(), s.getId());
+						s.getAddr(), s.getLimits(),s.getState(),s.getId());
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException("更新员工失败");
@@ -80,12 +80,12 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 	@Override
 	public PageDiv<Staff> getAllStaff(Integer pageSize, Integer pageNo) {
 		PageDiv<Staff> pd = null;
-		String sql = "select * from staff limit " + ((pageNo - 1) * pageSize)
-				+ "," + pageSize;
+		String sql = "select * from staff where id>1 order by id asc" + " limit "
+				+ ((pageNo - 1) * pageSize) + "," + pageSize;
 		try {
 			List<Staff> list = dao.executeQuery(sql, Staff.class);
 			Integer totalCount = dao
-					.executeQueryForCount("select count(id) from staff");
+					.executeQueryForCount("select count(id) from staff where id>1");
 			pd = new PageDiv<Staff>(pageSize, pageNo, totalCount, list);
 		} catch (SQLException e) {
 			e.printStackTrace();

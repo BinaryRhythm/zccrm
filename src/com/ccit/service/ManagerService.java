@@ -12,5 +12,7 @@ public interface ManagerService {
 
 	public PageDiv<Staff> getStaffByLeader(Integer pageSize, Integer pageNo,
 			Integer areaId);
+	
+	public void deleteStaff(Integer id);
 
 }

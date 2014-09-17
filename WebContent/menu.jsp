@@ -46,12 +46,12 @@ $(function(){
 </head>
 
 <body>
-<div id="showm">
+<div id="showm" align="right">
   <p>
      <%
          if(null != session.getAttribute("staff")){
         	 Staff s = (Staff)session.getAttribute("staff");
-        	 out.println("欢迎"+ s.getName());
+        	 out.println("欢迎,<font color='red'>"+ s.getName()+"</font>");
          }
      %>
   </p>
