@@ -39,14 +39,25 @@ public class ForGetStaffList extends ServletBase {
 		List<Area> areaList = ss.getAllArea();
 
 		int pageNo = this.getInt(req, "pageNo");
+		int areaId = this.getInt(req, "areaId");
+		int status = this.getInt(req, "status");
+
 		if (pageNo == 0)
 			pageNo = 1;
 
-		PageDiv<Staff> staffPd = ms.getAllStaff(5, pageNo);
-
+		PageDiv<Staff> staffPd = null;
+		
+		if (areaId > 0) {
+			staffPd = ms.getStaffByArea(5, pageNo, areaId);
+		} else if (status > 0) {
+			staffPd = ms.getStaffByStatus(5, pageNo, status);
+		} else {
+			staffPd = ms.getAllStaff(5, pageNo);
+		}
+		
 		req.setAttribute("staffPd", staffPd);
 		req.setAttribute("areaList", areaList);
-		
+
 		req.getRequestDispatcher("stafflist.jsp").forward(req, resp);
 
 	}

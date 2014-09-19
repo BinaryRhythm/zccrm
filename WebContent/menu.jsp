@@ -64,25 +64,25 @@ $(function(){
 </div>
 <div id="menulist">
   <dl>
-      <dt style="margin-top:0;">首选服务</dt>
+      <dt style="margin-top:0;">在职干部</dt>
       <dd><a href="logout" target="_parent">注销登录</a></dd>
       <dd><a href="modify_manager.jsp" target="main">修改管理员资料</a></dd>
       <dd><a href="admin/staffList" target="main"><font color="#FF0000">查看员工账号</font></a></dd>
       
-      <dt>区域管理</dt>
+      <dt>退休干部</dt>
       <dd><a href="#">查看区域</a></dd>
       
-      <dt>客户管理</dt>
+      <dt>职       工</dt>
       <dd><a href="#">潜在客户</a></dd>
       <dd><a href="#">现有客户</a></dd>
       
-      <dt>提醒服务</dt>
+      <dt>转出干部</dt>
       <dd><a href="#">天数设置</a></dd>
       <dd><a href="#">客户生日提醒</a></dd>
       <dd><a href="#">企业周年提醒</a></dd>
       <dd><a href="#">新年更新状态</a></dd>
       
-      <dt>潛在客戶</dt>
+      <dt>离世干部</dt>
       <dd><a href="#">添加潛在客戶</a></dd>
       <dd><a href="#">查看潛在客戶</a></dd>
       <dd><a href="#">查找潛在客戶</a></dd>

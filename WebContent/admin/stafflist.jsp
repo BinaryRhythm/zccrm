@@ -91,8 +91,9 @@ a.l4:hover {
 			cellspacing="1" bordercolor="#FFFFFF">
 			<tr>
 				<td height="24" bgcolor="#003399" class="whitefont">.::现有员工账号&nbsp;
-					&nbsp; <a href="#" class="l1">全部</a>&nbsp; &nbsp; <a href="#"
-					class="l1">需要验证的员工</a>&nbsp; &nbsp; <a href="#" class="l1">已验证的员工</a>
+					&nbsp; <a href="staffList?status=0" class="l1">全部</a>&nbsp; &nbsp;
+					<a href="#" class="staffList?status=0">需要验证的员工</a>&nbsp; &nbsp; <a
+					href="staffList?status=1" class="l1">已验证的员工</a>
 				</td>
 			</tr>
 			<tr>
@@ -102,7 +103,8 @@ a.l4:hover {
 							List<Area> areaList = (List<Area>) request.getAttribute("areaList");
 							for (Area area : areaList) {
 						%>
-						<li><a href="#"><%=area.getName()%></a></li> &nbsp; &nbsp;
+						<li><a href="staffList?areaId=<%=area.getId()%>"><%=area.getName()%></a></li>
+						&nbsp; &nbsp;
 						<%
 							}
 						%>
@@ -143,54 +145,56 @@ a.l4:hover {
 					bgcolor="#CCCCCC" class="l2"><a href="#" class="l2">查看</a></td>
 				<td width="327" height="24" align="center" valign="middle"
 					bgcolor="#CCCCCC"><span class="l3"><a href="#"
-						class="l3">查看、修改员工资料</a></span>&nbsp;
-							
-				 <a href="delStaff?id=<%=s.getId() %>&pageNo=<%=staffPd.getPageNo() %>" class="l3">删除员工</a></td>	
-				
+						class="l3">查看、修改员工资料</a></span>&nbsp; <a
+					href="delStaff?id=<%=s.getId()%>&pageNo=<%=staffPd.getPageNo()%>"
+					class="l3">删除员工</a></td>
+
 				<td height="24" width="232" align="center" valign="middle"
-					bgcolor="#CCCCCC"><a href="#" class="l4">
-					<% if(s.getState() == 1){ %>
-					该账号已开通，点击
-					<a href="lockAndUnlock?types=lock&id=<%=s.getId() %>&pageNo=<%=staffPd.getPageNo() %>" class="13">
-					关闭
-					</a>				
-					<% }else{ %>
-					该账号未开通，点击
-					<a href="lockAndUnlock?types=unlock&id=<%=s.getId() %>&pageNo=<%=staffPd.getPageNo() %>" class="13">
-						<font color="red">开通</font>
-					</a>
-					<%} %>
-					</a>
-				</td>
-					
+					bgcolor="#CCCCCC"><a href="#" class="l4"> <%
+ 	if (s.getState() == 1) {
+ %>
+						该账号已开通，点击 <a
+						href="lockAndUnlock?types=lock&id=<%=s.getId()%>&pageNo=<%=staffPd.getPageNo()%>"
+						class="13"> 关闭 </a> <%
+ 	} else {
+ %> 该账号未开通，点击 <a
+						href="lockAndUnlock?types=unlock&id=<%=s.getId()%>&pageNo=<%=staffPd.getPageNo()%>"
+						class="13"> <font color="red">开通</font>
+					</a> <%
+ 	}
+ %>
+				</a></td>
+
 			</tr>
 			<%
 				}
-				int prePage = (staffPd.getPageNo()-1)<1?1:(staffPd.getPageNo()-1);
-			    int nextPage = (staffPd.getPageNo()+1)>staffPd.getTotalPage()?staffPd.getPageNo():(staffPd.getPageNo()+1);
+				int prePage = (staffPd.getPageNo() - 1) < 1 ? 1 : (staffPd
+						.getPageNo() - 1);
+				int nextPage = (staffPd.getPageNo() + 1) > staffPd.getTotalPage() ? staffPd
+						.getPageNo() : (staffPd.getPageNo() + 1);
 			%>
 			<tr>
 				<td height="24" width="103" align="center" valign="middle"
 					colspan="6" bgcolor="#CCCCCC">当前页次<font color="red"><%=staffPd.getPageNo()%>/<%=staffPd.getTotalPage()%></font>，
-					共<font color="red"><%=staffPd.getTotalCount()%></font>条记录
-					 <a href="staffList?pageNo=1" class="l2">[首页]</a> 
-					<a href="staffList?pageNo=<%=prePage %>" class="l2">[上一页]</a> 
-					<a href="staffList?pageNo=<%=nextPage %>" class="l2">[下一页]</a>
-					<a href="staffList?pageNo=<%=staffPd.getTotalPage() %>" class="l2">[尾页]</a>
-			 <form action="" style="display:inline;">
-			   <select name="pageNo">
-			   <%
-			      int tot = staffPd.getTotalPage();
-			      for(int i = 1;i<tot;i++){
-			   %>	 
-			   <option value="<%=i %>"><%=i %></option>
-			   <%
-			      }
-			   %>  
-			   </select>
-			 </form>
-			</td>
-		 </tr>
+					共<font color="red"><%=staffPd.getTotalCount()%></font>条记录 <a
+					href="staffList?pageNo=1" class="l2">[首页]</a> <a
+					href="staffList?pageNo=<%=prePage%>" class="l2">[上一页]</a> <a
+					href="staffList?pageNo=<%=nextPage%>" class="l2">[下一页]</a> <a
+					href="staffList?pageNo=<%=staffPd.getTotalPage()%>" class="l2">[尾页]</a>
+					<form action="" style="display: inline;">
+						<select name="pageNo">
+							<%
+								int tot = staffPd.getTotalPage();
+								for (int i = 1; i < tot; i++) {
+							%>
+							<option value="<%=i%>"><%=i%></option>
+							<%
+								}
+							%>
+						</select>
+					</form>
+				</td>
+			</tr>
 
 		</table>
 

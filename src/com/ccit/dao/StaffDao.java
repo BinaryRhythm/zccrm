@@ -61,6 +61,9 @@ public interface StaffDao<Staff extends Serializable> {
 	public void addUnderStaff(Integer leaderId, Integer staffId)
 			throws SQLException;
 	
+	public PageDiv<Staff> getStaffByStatus(Integer pageSize, Integer pageNo,
+			Integer state) throws SQLException;
+	
 	/**
 	 * 获取最后一条插入记录的id
 	 * @return

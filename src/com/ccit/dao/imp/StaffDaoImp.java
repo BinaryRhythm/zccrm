@@ -145,4 +145,22 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 		return id;
 	}
 
+	@Override
+	public PageDiv<Staff> getStaffByStatus(Integer pageSize, Integer pageNo,
+			Integer state) throws SQLException {
+		PageDiv<Staff> pd = null;
+		String sql = "select * from staff where state=? limit ?,?";
+		try {
+			List<Staff> list = dao.executeQuery(sql, Staff.class, state,
+					(pageNo - 1) * pageSize, pageSize);
+			Integer totalCount = dao
+					.executeQueryForCount("select count(id) from staff");
+			pd = new PageDiv<Staff>(pageSize, pageNo, totalCount, list);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("按领导查询员工失败");
+		}
+		return pd;
+	}
+
 }
