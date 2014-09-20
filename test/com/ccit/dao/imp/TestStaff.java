@@ -19,7 +19,7 @@ public class TestStaff {
 		s.setAreaID(1);
 		s.setAddr("广西湛江");
 		s.setEmail("syoon@qq.com");
-		s.setName("蓝力");
+		s.setName("林大会");
 		s.setPwd("123446");
 		s.setTel("13865808808");
 		s.setLimits("测试人员");

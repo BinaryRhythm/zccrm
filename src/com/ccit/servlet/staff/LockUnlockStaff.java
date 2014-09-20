@@ -12,7 +12,7 @@ import com.ccit.service.StaffService;
 
 /**
  * 开通或关闭账号
- * 
+ * 2未开通，1开通，0管理员
  * @author skyloon
  * @time 2014、9、17
  */
@@ -37,11 +37,11 @@ public class LockUnlockStaff extends ServletBase {
 
 		Staff staff = ss.getStaff(id);
 		if (types.equals("lock")) {
-			staff.setState(0);
+			staff.setState(2);
 		} else if (types.equals("unlock")) {
 			staff.setState(1);
 		} else if (types.equals("setadmin")) {
-			staff.setState(2);
+			staff.setState(0);
 		}
 
 		ss.modifyStaffInfo(staff);

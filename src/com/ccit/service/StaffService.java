@@ -182,4 +182,6 @@ public interface StaffService {
 
 	public PageDiv<Report> getReportByStatus(Integer pageSize, Integer pageNo,
 			Integer statusId);
+
+	public Integer getIdByName(String leaderName);
 }

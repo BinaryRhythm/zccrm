@@ -48,10 +48,13 @@ public class ForGetStaffList extends ServletBase {
 		PageDiv<Staff> staffPd = null;
 		
 		if (areaId > 0) {
+			// 通过地域来做筛选
 			staffPd = ms.getStaffByArea(5, pageNo, areaId);
 		} else if (status > 0) {
+			// 通过状态来做筛选  2未开通，1开通，0管理员
 			staffPd = ms.getStaffByStatus(5, pageNo, status);
 		} else {
+			// 不筛选
 			staffPd = ms.getAllStaff(5, pageNo);
 		}
 		

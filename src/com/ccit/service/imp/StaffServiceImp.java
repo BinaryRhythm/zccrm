@@ -87,6 +87,7 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 		boolean res = false;
 		try {
 			staffDao.updateStaff(staff);
+			res = true;
 			log.info("修改员工信息成功");
 		} catch (SQLException e) {
 			log.error("修改员工信息失败", e);
@@ -540,6 +541,18 @@ public class StaffServiceImp extends ServiceBase implements StaffService {
 			e.printStackTrace();
 		}
 		return pd;
+	}
+
+	@Override
+	public Integer getIdByName(String leaderName) {
+		Integer id = 0;
+		try {
+			id = staffDao.getIdByName(leaderName);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
 	}
 
 }

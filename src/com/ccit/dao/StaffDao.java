@@ -21,6 +21,8 @@ public interface StaffDao<Staff extends Serializable> {
 	public void updateStaff(Staff s) throws SQLException;
 
 	public Staff getStaff(Integer id) throws SQLException;
+	
+	public Integer getIdByName(String name) throws SQLException;
 
 	/**
 	 * 分页查找所有员工

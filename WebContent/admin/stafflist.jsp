@@ -91,8 +91,8 @@ a.l4:hover {
 			cellspacing="1" bordercolor="#FFFFFF">
 			<tr>
 				<td height="24" bgcolor="#003399" class="whitefont">.::现有员工账号&nbsp;
-					&nbsp; <a href="staffList?status=0" class="l1">全部</a>&nbsp; &nbsp;
-					<a href="#" class="staffList?status=0">需要验证的员工</a>&nbsp; &nbsp; <a
+					&nbsp; <a href="staffList" class="l1">全部</a>&nbsp; &nbsp;
+					<a href="staffList?status=2" class="12">需要验证的员工</a>&nbsp; &nbsp; <a
 					href="staffList?status=1" class="l1">已验证的员工</a>
 				</td>
 			</tr>
@@ -102,7 +102,7 @@ a.l4:hover {
 						<%
 							List<Area> areaList = (List<Area>) request.getAttribute("areaList");
 							for (Area area : areaList) {
-						%>
+						%>		
 						<li><a href="staffList?areaId=<%=area.getId()%>"><%=area.getName()%></a></li>
 						&nbsp; &nbsp;
 						<%
@@ -133,6 +133,7 @@ a.l4:hover {
 						.getAttribute("staffPd");
 				List<Staff> list = staffPd.getList();
 				for (Staff s : list) {
+					
 			%>
 			<tr>
 				<td height="24" width="103" align="center" valign="middle"
@@ -150,27 +151,29 @@ a.l4:hover {
 					class="l3">删除员工</a></td>
 
 				<td height="24" width="232" align="center" valign="middle"
-					bgcolor="#CCCCCC"><a href="#" class="l4"> <%
+					bgcolor="#CCCCCC"><a href="#" class="l4"> 
+					<%
  	if (s.getState() == 1) {
- %>
-						该账号已开通，点击 <a
-						href="lockAndUnlock?types=lock&id=<%=s.getId()%>&pageNo=<%=staffPd.getPageNo()%>"
+ %> 该账号已开通，点击
+  <a href="lockAndUnlock?types=lock&id=<%=s.getId()%>&pageNo=<%=staffPd.getPageNo()%>"
 						class="13"> 关闭 </a> <%
- 	} else {
- %> 该账号未开通，点击 <a
-						href="lockAndUnlock?types=unlock&id=<%=s.getId()%>&pageNo=<%=staffPd.getPageNo()%>"
+ 	} else if(s.getState() == 2){
+ %> 该账号未开通，点击 
+ <a href="lockAndUnlock?types=unlock&id=<%=s.getId()%>&pageNo=<%=staffPd.getPageNo()%>"
 						class="13"> <font color="red">开通</font>
-					</a> <%
+					</a> 
+		<%
  	}
  %>
 				</a></td>
 
 			</tr>
+			<!--  分页工序  -->
 			<%
 				}
-				int prePage = (staffPd.getPageNo() - 1) < 1 ? 1 : (staffPd
-						.getPageNo() - 1);
-				int nextPage = (staffPd.getPageNo() + 1) > staffPd.getTotalPage() ? staffPd
+					int prePage = (staffPd.getPageNo() - 1) < 1 ? 1 : (staffPd
+							.getPageNo() - 1);
+					int nextPage = (staffPd.getPageNo() + 1) > staffPd.getTotalCount() ? staffPd
 						.getPageNo() : (staffPd.getPageNo() + 1);
 			%>
 			<tr>
@@ -181,13 +184,13 @@ a.l4:hover {
 					href="staffList?pageNo=<%=prePage%>" class="l2">[上一页]</a> <a
 					href="staffList?pageNo=<%=nextPage%>" class="l2">[下一页]</a> <a
 					href="staffList?pageNo=<%=staffPd.getTotalPage()%>" class="l2">[尾页]</a>
-					<form action="" style="display: inline;">
+					<form action="staffList" style="display: inline;">
 						<select name="pageNo">
 							<%
 								int tot = staffPd.getTotalPage();
-								for (int i = 1; i < tot; i++) {
+								for (int i = 0; i < tot; i++) {
 							%>
-							<option value="<%=i%>"><%=i%></option>
+							<option value="<%=i%>"><%=i+1%></option>
 							<%
 								}
 							%>

@@ -24,4 +24,13 @@ public class TestStaffServiceImp {
 		
 		System.out.println(ss.registStaff(s));
 	}
+	
+	@Test
+	public void testGetIdByName(){
+		StaffService ss = (StaffService)
+				ServiceFactory.getService("StaffService");
+		int id = ss.getIdByName("李长坤");
+		System.out.println(id);
+	}
+	
 }

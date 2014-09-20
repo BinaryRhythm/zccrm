@@ -153,14 +153,21 @@ public class StaffDaoImp extends DaoTemplate<Staff> implements StaffDao<Staff> {
 		try {
 			List<Staff> list = dao.executeQuery(sql, Staff.class, state,
 					(pageNo - 1) * pageSize, pageSize);
-			Integer totalCount = dao
-					.executeQueryForCount("select count(id) from staff");
+			int totalCount = dao.executeQueryForCount("select count(id) from staff where state="+state);
 			pd = new PageDiv<Staff>(pageSize, pageNo, totalCount, list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("按领导查询员工失败");
 		}
 		return pd;
+	}
+
+	@Override
+	public Integer getIdByName(String name) throws SQLException {
+		Integer id = 0;
+		Staff s = dao.executeQueryForBean("select * from staff where name='"+name+"'", Staff.class);
+		id = s.getId();
+		return id;
 	}
 
 }

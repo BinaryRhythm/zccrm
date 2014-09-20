@@ -14,9 +14,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>401客户管理系统</title>
-
-
+<title>档案查询系统</title>
 </head>
 <frameset cols="185,*" framespacing="0" frameborder="no" border="0">
   <frame src="menu.jsp">

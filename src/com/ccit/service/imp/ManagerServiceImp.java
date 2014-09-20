@@ -70,7 +70,7 @@ public class ManagerServiceImp extends ServiceBase implements ManagerService {
 			Integer state) {
 		PageDiv<Staff> pd = null;
 		try {
-			pd = staffDao.getStaffByStatus(pageSize, pageNo, state);
+			pd = staffDao.getStaffByStatus(pageSize, pageNo,state);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
